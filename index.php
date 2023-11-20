@@ -1,3 +1,28 @@
+<!--Import-->
+<?php
+    $host = 'localhost';
+    $username = 'root';
+    $password = '';
+    $database = 'db_datasiswa';
+    
+    $conn = new mysqli($host, $username, $password, $database);
+    
+    if ($conn->connect_error) {
+        die("Koneksi gagal: " . $conn->connect_error);
+    }
+    
+    $filename = 'eksport_database.sql';
+
+    $command = "mysql --host={$host} --user={$username} --password={$password} {$database} < {$filename}";
+    
+    system($command);
+    
+    $conn->close();
+    
+    #echo "Import database berhasil ke file: {$filename}";
+?>
+
+<!DOCTYPE html>
 <body>
     <h1>CRUD database</h1>
 
@@ -153,3 +178,27 @@
     ?>
     </form>
 </body>
+</html>
+<?php
+    $host = 'localhost';
+    $username = 'root';
+    $password = '';
+    $database = 'db_datasiswa';
+    
+    $conn = new mysqli($host, $username, $password, $database);
+    
+    if ($conn->connect_error) {
+        die("Koneksi gagal: " . $conn->connect_error);
+    }
+    
+    $filename = 'eksport_database.sql';
+
+    $command = "mysqldump --host={$host} --user={$username} --password={$password} {$database} > {$filename}";
+    
+    system($command);
+    
+    $conn->close();
+    
+    #echo "Eksport database berhasil ke file: {$filename}";
+    sleep(10);
+?>
